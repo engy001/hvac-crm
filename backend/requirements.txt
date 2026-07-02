@@ -1,0 +1,16 @@
+Flask==2.3.0
+Flask-SQLAlchemy==3.0.5
+Flask-Cors==4.0.0
+Flask-JWT-Extended==4.4.4
+Flask-Mail==0.9.1
+python-dotenv==1.0.0
+requests==2.31.0
+openpyxl==3.11.2
+pandas==2.0.3
+PyYAML==6.0
+werkzeug==2.3.0
+bcrypt==4.0.1
+PyJWT==2.8.0
+python-dateutil==2.8.2
+whatsapp-api-client-python==0.12
+apscheduler==3.10.4

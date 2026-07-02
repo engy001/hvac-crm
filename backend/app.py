@@ -14,7 +14,8 @@ from routes.quotations import quotations_bp
 from routes.ai_agents import ai_bp
 from routes.dashboard import dashboard_bp
 from routes.backup import backup_bp
-from routes.reports import reports_bp
+from routes.communications import communications_bp, init_communications
+from routes.export_reports import export_reports_bp
 from utils.email_service import init_mail
 from utils.backup_service import init_backup_scheduler
 
@@ -45,6 +46,7 @@ mail = Mail(app)
 # 初始化服务
 init_mail(app)
 init_backup_scheduler(app)
+init_communications(app)
 
 # 注册蓝图
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
@@ -53,7 +55,8 @@ app.register_blueprint(quotations_bp, url_prefix='/api/quotations')
 app.register_blueprint(ai_bp, url_prefix='/api/ai')
 app.register_blueprint(dashboard_bp, url_prefix='/api/dashboard')
 app.register_blueprint(backup_bp, url_prefix='/api/backup')
-app.register_blueprint(reports_bp, url_prefix='/api/reports')
+app.register_blueprint(communications_bp, url_prefix='/api/communications')
+app.register_blueprint(export_reports_bp, url_prefix='/api/export')
 
 # 全局错误处理
 @app.errorhandler(404)
@@ -89,7 +92,7 @@ with app.app_context():
             email='admin@hvac-crm.com',
             role='admin'
         )
-        admin.set_password('admin123')  # 初始密码，请修改
+        admin.set_password('admin123')
         db.session.add(admin)
         db.session.commit()
         print('✓ 默认管理员已创建: admin@hvac-crm.com (密码: admin123)')
